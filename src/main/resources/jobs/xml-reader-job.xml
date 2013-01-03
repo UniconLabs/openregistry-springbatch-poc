@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2011 Michael R. Lange <michael.r.lange@langmi.de>.
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd">
+
+
+    <import resource="launcher/jobs-launcher-context.xml"/>
+    <import resource="../openregistry/openRegistryContext.xml"/>
+
+    <bean id="loggingSorRecordWriter" class="edu.utah.openregistry.batch.peoplesoft.LoggingSorRecordWriter"/>
+    <bean id="jobParametersIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer" />
+
+    <bean id="itemReader" class="org.springframework.batch.item.xml.StaxEventItemReader">
+        <property name="fragmentRootElementName" value="PERSON" />
+        <property name="resource" value="file:/etc/openregistry/input/openRegLoad.xml" />
+        <property name="unmarshaller" ref="peoplesoftRecordMarshaller" />
+    </bean>
+
+    <oxm:jaxb2-marshaller id="peoplesoftRecordMarshaller">
+        <oxm:class-to-be-bound name="edu.utah.openregistry.batch.peoplesoft.InboundPeoplesoftPersonRecord"/>
+    </oxm:jaxb2-marshaller>
+
+    <bean id="itemProcessor" class="edu.utah.openregistry.batch.peoplesoft.PeoplesoftRecordToReconciliationCriteriaProcessor"/>
+
+    <!-- <bean id="logItemWriter" class="org.springframework.batch.item.adapter.ItemWriterAdapter"
+          p:targetObject-ref="loggingSorRecordWriter"
+          p:targetMethod="logReconciliationCriteria"/> -->
+
+    <bean id="openRegistryAPIitemWriter" class="org.springframework.batch.item.adapter.ItemWriterAdapter"
+          p:targetObject-ref="personService"
+          p:targetMethod="addPerson"/>
+
+
+    <job id="peoplesoftInboundPersonJob" job-repository="jobRepository" incrementer="jobParametersIncrementer"
+         xmlns="http://www.springframework.org/schema/batch">
+
+        <step id="loadPeoplesoftDataIntoOpenRegistryStep">
+            <tasklet>
+                <chunk reader="itemReader" processor="itemProcessor" writer="openRegistryAPIitemWriter" commit-interval="50"/>
+            </tasklet>
+        </step>
+    </job>
+
+</beans>
