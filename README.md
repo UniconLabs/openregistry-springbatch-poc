@@ -23,6 +23,8 @@ http://static.springsource.org/spring-batch/
 
 * At the root of the project directory run: `mvn clean install`
 
+Also see: https://wiki.jasig.org/display/ORUM/Deploying+the+Demonstration+War+from+SVN
+
 ## Prepare the OpenRegistry and Spring Batch database tables
 
 * Create an Oracle schema to house OpenRegistry and Spring Batch tables
