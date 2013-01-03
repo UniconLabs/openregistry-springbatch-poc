@@ -34,7 +34,8 @@ Also see: https://wiki.jasig.org/display/ORUM/Deploying+the+Demonstration+War+fr
 * Run DDL script to create Spring Batch tables
 
 * Run DML scripts to populate necessary OpenRegistry reference data tables
-** See etc/dml/
+
+* See etc/dml/ and etc/ddl
 
 ## Download and configure batch project
 
