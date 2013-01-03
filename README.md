@@ -2,8 +2,8 @@ openregistry-springbatch-poc
 =======================
 
 This project is a proof of concept showing how to use Spring Batch to feed identity data into Jasig Open Registry.
-A sample ERP XML data extract is read in via a Spring Batch job and is processed against OpenRegistry APIs ultimately
-populating that OpenRegistry database schema.
+A sample ERP XML data extract is read in via a Spring Batch job and processed against OpenRegistry APIs to
+populate the OpenRegistry database schema.
 
 Open Registry
 https://wiki.jasig.org/display/OR/Home
