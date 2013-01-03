@@ -4,7 +4,7 @@
   <groupId>net.unicon</groupId>
   <artifactId>openregistry-springbatch-poc</artifactId>
   <name>Open Registry Spring Batch Proof of Concept</name>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5</version>
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
