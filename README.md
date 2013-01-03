@@ -1,11 +1,11 @@
 openregistry-springbatch-poc
 =======================
 
-This project is a proof of concept showing how to use Spring Batch to feed identity data into Jasig Open Registry.
+This project is a proof of concept showing how to use Spring Batch to feed identity data into Jasig OpenRegistry.
 A sample ERP XML data extract is read in via a Spring Batch job and processed against OpenRegistry APIs to
 populate the OpenRegistry database schema.
 
-Open Registry
+Jasig OpenRegistry
 https://wiki.jasig.org/display/OR/Home
 
 Spring Batch
@@ -19,19 +19,19 @@ http://static.springsource.org/spring-batch/
 
 ## Build and install openregistry 0.9.2-SNAPSHOT jars into a local maven repository
 
-* Check out from Open Registry JASIG SVN repository
+* Check out from OpenRegistry Jasig svn repository
 
 * At the root of the project directory run: `mvn clean install`
 
-## Prepare the Open Registry and Spring Batch database tables
+## Prepare the OpenRegistry and Spring Batch database tables
 
-* Create an Oracle schema to house Open Registry and Spring Batch tables
+* Create an Oracle schema to house OpenRegistry and Spring Batch tables
 
-* Run DDL scripts to create Open Registry tables
+* Run DDL scripts to create OpenRegistry tables
 
 * Run DDL script to create Spring Batch tables
 
-* Run DML scripts to populate necessary Open Registry reference data tables
+* Run DML scripts to populate necessary OpenRegistry reference data tables
 ** See etc/dml/
 
 ## Download and configure batch project
@@ -57,6 +57,6 @@ http://static.springsource.org/spring-batch/
 
 After the batch job execution finishes, the log files for that run will be produced in that directory with the
 timestamp of the job execution invocation. At this point, examine the log file for the job execution status, any
-produced errors, etc. Also, on the successful execution, the data should be available in the Open Registry database
+produced errors, etc. Also, on the successful execution, the data should be available in the OpenRegistry database
 in both `system of record` form as well as `calculated` form (PRS_* and PRC_* tables respectively)
 
