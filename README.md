@@ -17,14 +17,6 @@ http://static.springsource.org/spring-batch/
 
 * `mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar`
 
-## Build and install openregistry 0.9.2-SNAPSHOT jars into a local maven repository
-
-* Check out from OpenRegistry Jasig svn repository
-
-* At the root of the project directory run: `mvn clean install`
-
-Also see: https://wiki.jasig.org/display/ORUM/Deploying+the+Demonstration+War+from+SVN
-
 ## Prepare the OpenRegistry and Spring Batch database tables
 
 * Create an Oracle schema to house OpenRegistry and Spring Batch tables
