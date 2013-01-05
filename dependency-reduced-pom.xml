@@ -76,7 +76,7 @@
   <properties>
     <spring.batch.version>2.1.9.RELEASE</spring.batch.version>
     <spring.framework.version>3.1.2.RELEASE</spring.framework.version>
-    <openregistry.version>0.9.2-SNAPSHOT</openregistry.version>
+    <openregistry.version>0.9.2</openregistry.version>
     <oracle.jdbc.version>11.2.0</oracle.jdbc.version>
     <hsqldb.version>2.2.8</hsqldb.version>
     <junit.version>4.10</junit.version>
