@@ -106,12 +106,12 @@ public class PeoplesoftRecordToReconciliationCriteriaProcessor implements
 			}
 
 			//Email Addresses
-			for (InboundPeoplesoftPersonRecord.ROLE.EMAIL email : role.EMAILS) {
+			/*for (InboundPeoplesoftPersonRecord.ROLE.EMAIL email : role.EMAILS) {
 				EmailAddress sorRoleEmail = sorRole.createEmailAddress();
 				sorRoleEmail.setAddress(email.ADDRESS.trim()); //TODO: required
 				sorRoleEmail.setAddressType(this.referenceRepository.findType(Type.DataTypes.ADDRESS, email.ADDRESS_T.trim())); //TODO: need to add Utah's specific ref data values in ctx_data_types
 				sorRole.addEmailAddress(sorRoleEmail);
-			}
+			}*/
 
 			//Phones
 			for (InboundPeoplesoftPersonRecord.ROLE.PHONE phone : role.PHONES) {
@@ -121,7 +121,7 @@ public class PeoplesoftRecordToReconciliationCriteriaProcessor implements
 				sorRolePhone.setNumber(phone.PHONE_NUMBER.trim()); //TODO: required
 				sorRolePhone.setExtension(nonEmptyTrimmedValueOrNull(phone.EXTENSION));
 				sorRolePhone.setPhoneType(this.referenceRepository.findType(Type.DataTypes.PHONE, DEFAULT_PHONE_TYPE)); //TODO: need incoming phone type. Using hardcoded 'Land' for this POC
-				sorRolePhone.setAddressType(this.referenceRepository.findType(Type.DataTypes.ADDRESS, phone.PHONE_T == null ? "emp" : phone.PHONE_T.toLowerCase())); //TODO: need to add Utah's specific ref data values to ctx_data_types table
+				sorRolePhone.setAddressType(this.referenceRepository.findType(Type.DataTypes.ADDRESS, phone.ADDRESS_T == null ? "Home" : phone.ADDRESS_T.toLowerCase())); //TODO: need to add Utah's specific ref data values to ctx_data_types table
 				sorRolePhone.setPhoneLineOrder(phone.PHONE_LINE_ORDER.trim().length() == 0 ? 1 : Integer.valueOf(phone.PHONE_LINE_ORDER.trim())); //TODO: need to add incoming phone line order. Using hardcoded '1' for this POC
 				sorRole.addPhone(sorRolePhone);
 			}
