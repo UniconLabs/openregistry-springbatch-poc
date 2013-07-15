@@ -9,14 +9,11 @@ INSERT INTO prd_campuses (code, name)
 
 -- Identifiers
 
-INSERT INTO prd_identifier_types (name)
-  VALUES ('SSN');
+INSERT INTO prd_identifier_types (identifier_t, name, format, description)
+  VALUES (1, 'SSN', 'n/a', 'US Social Security Number');
 
-INSERT INTO prd_identifier_types (name)
-  VALUES ('UTAHID');
-
-INSERT INTO prd_identifier_types (name)
-  VALUES ('NETID');
+INSERT INTO prd_identifier_types (identifier_t, name, format, description)
+  VALUES (2, 'NETID', 'n/a', 'Sample local NET ID');
 
 
 -- Example Data Types
